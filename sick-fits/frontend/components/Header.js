@@ -23,10 +23,24 @@ const Logo = styled.h1`
   }
 `;
 
+const StyledHeader = styled.header`
+  .bar {
+    border-bottom: 10px solid ${({theme}) => theme.black};
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: space-between;
+    align-items: stretch;
+
+    @media (max-width: 1300px) {
+      grid-template-columns: 1fr;
+      justify-content: center;
+    }
+  }
+`
 
 export function Header() {
   return (
-    <div>
+    <StyledHeader>
       <div className="bar">
         <Logo>
           <Link href="/">
@@ -39,6 +53,6 @@ export function Header() {
         <p>Search</p>
       </div>
       <div>Cart</div>
-    </div>
+    </StyledHeader>
   );
 }
