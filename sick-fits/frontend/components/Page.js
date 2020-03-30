@@ -1,9 +1,10 @@
 import React from "react";
+import { Header } from '.'
 
 export function Page(props) {
   return (
     <div>
-      <p>Hey! I'm the page component</p>
+      <Header />
       {props.children}
     </div>
   );
