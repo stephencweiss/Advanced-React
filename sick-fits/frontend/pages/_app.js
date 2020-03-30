@@ -1,14 +1,15 @@
-import App, { Container } from "next/app";
+import { Container } from "next/app";
 import { Page } from "../components";
 
-function MyApp(props) {
+function App(props) {
   const { Component } = props;
   return (
     <Container>
-      <Page />
-      <Component />
+      <Page>
+        <Component />
+      </Page>
     </Container>
   );
 }
 
-export default MyApp;
+export default App;
