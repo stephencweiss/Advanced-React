@@ -13,7 +13,7 @@ const Logo = styled.h1`
     padding: 0.5rem 1rem;
     background: ${({ theme }) => theme.red};
     color: white;
-    text-transfrom: upper;
+    text-transfrom: uppercase;
     text-decoration: none;
   }
 
@@ -35,6 +35,12 @@ const StyledHeader = styled.header`
       grid-template-columns: 1fr;
       justify-content: center;
     }
+  }
+
+  .sub-bar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    border-bottom: 1px solid ${({theme}) => theme.lightGrey}
   }
 `
 
