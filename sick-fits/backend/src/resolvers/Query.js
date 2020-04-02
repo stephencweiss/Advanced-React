@@ -1,3 +1,3 @@
-const Query = {};
+const query = {};
 
-module.exports = Query;
+module.exports = query;
