@@ -1,3 +1,6 @@
+// Connecting to the remote prisma DB
+// using prisma-binding: https://github.com/prisma-labs/prisma-binding
+
 const { Prisma } = require("prisma-binding");
 
 const db = new Prisma({
