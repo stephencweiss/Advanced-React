@@ -6,11 +6,9 @@ type Dog {
   breed: String
 }
 
-
-type Mutations {
+type Mutation {
     createDog(name: String!, breed: String): Dog
 }
-
 
 type Query {
   dogs: [Dog]!
