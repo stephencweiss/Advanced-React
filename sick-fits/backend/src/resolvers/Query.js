@@ -1,7 +1,7 @@
 const Query = {
-    dogs: function(parent, args, ctx, info){
-        return [{name: 'Snickers', breed: 'GSP'}, {name: 'Finn', breed: 'Lab/Pitt mix'}]
-    }
+  dogs: function(parent, args, ctx, info) {
+    return global.dogs || [];
+  }
 };
 
 module.exports = Query;
