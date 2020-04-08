@@ -1,9 +1,10 @@
 const Mutations = {
-  createDog: function(parent, args, ctx, info) {
-    global.dogs = global.dogs || [];
-    const dog = { name: args.name, breed: args.breed };
-    global.dogs.push(dog);
-    return dog;
+  createItem(parent, args, ctx, info){
+    // TODO: Auth check
+    console.log({args, info})
+    return ctx.db.mutation.createItem({
+      data: {...args}
+    }, info)
   }
 };
 

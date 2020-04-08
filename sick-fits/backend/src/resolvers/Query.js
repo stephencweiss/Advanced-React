@@ -1,6 +1,7 @@
 const Query = {
-  dogs: function(parent, args, ctx, info) {
-    return global.dogs || [];
+  async items(parent, args, ctx, info) {
+    const items = await ctx.db.query.items()
+    return items;
   }
 };
 
