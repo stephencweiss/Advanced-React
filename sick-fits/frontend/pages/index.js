@@ -1,8 +1,9 @@
 import Link from "next/link";
+import {Items} from '../components'
 function Home() {
   return (
     <div>
-      <p>Hey!</p>
+      <Items />
     </div>
   );
 }
