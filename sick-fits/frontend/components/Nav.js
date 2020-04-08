@@ -4,8 +4,8 @@ import NavStyles from './styles/NavStyles'
 export function Nav() {
   return (
     <NavStyles>
-      <Link href="/items">
-        <a>Items</a>
+      <Link href="/shop">
+        <a>shop</a>
       </Link>
       <Link href="/sell">
         <a>Sell</a>
