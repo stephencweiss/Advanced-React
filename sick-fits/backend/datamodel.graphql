@@ -11,7 +11,7 @@ type Item {
   image: String
   largeImage: String
   price: Int!
-  createAt: DateTime # exposed via Prisma
+  createdAt: DateTime @createdAt # exposed via Prisma
   updatedAt: DateTime @updatedAt # exposed via Prisma
   # user: User!
 }
