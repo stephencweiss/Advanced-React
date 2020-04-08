@@ -1,15 +1,19 @@
 import { Container } from "next/app";
 import { Page } from "../components";
+import { ApolloProvider } from "react-apollo";
+import withData from "../lib/withData";
 
 function App(props) {
-  const { Component } = props;
+  const { apollo, Component } = props;
   return (
     <Container>
-      <Page>
-        <Component />
-      </Page>
+      <ApolloProvider client={apollo}>
+        <Page>
+          <Component />
+        </Page>
+      </ApolloProvider>
     </Container>
   );
 }
 
-export default App;
+export default withData(App);
