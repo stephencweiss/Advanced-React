@@ -19,6 +19,7 @@ function App(props) {
 App.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
   if (Component.getInitialProps) {
+    // crawls any component to _before_ the render and then can expose them via props
     pageProps = await Component.getInitialProps(ctx);
   }
   // expose the query to the user
