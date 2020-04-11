@@ -34,6 +34,9 @@ html {
   }
   a {
     text-decoration: none;
-    color: ${theme.black}
+    color: ${theme.black};
+  }
+  button {
+    color: ${theme.black};
   }
 `;
