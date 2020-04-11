@@ -1,5 +1,6 @@
 import React from "react";
 import { Mutation } from "react-apollo";
+import Router from 'next/router'
 import gql from "graphql-tag";
 import Form from "./styles/Form";
 import formatMoney from "../lib/formatMoney";
@@ -44,9 +45,15 @@ export class CreateItem extends React.Component {
   };
 
   handleSubmit = async (event, createItem) => {
+    // prevent native form submission
     event.preventDefault();
+    // create the item on the data base
     const res = await createItem()
-    console.log(res)
+    // redirect to the new item's page
+    Router.push({
+        pathname: '/item',
+        query: {id: res.data.createItem.id}
+    })
   };
 
   render() {
