@@ -95,8 +95,8 @@ export class CreateItem extends React.Component {
                   id="file"
                   name="file"
                   placeholder="Upload an image"
+                  accept={"image/*"}
                   required
-                  multiple
                   onChange={this.handleImageUpload}
                 />
               </label>
