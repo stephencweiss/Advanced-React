@@ -78,7 +78,8 @@ export class CreateItem extends React.Component {
 
   handleImageUpload = (event) => {
     const { files } = event.target;
-    this.setState({ files });
+    const tempUrl = URL.createObjectURL(files[0]);
+    this.setState({ files, tempUrl });
   };
 
   render() {
@@ -99,6 +100,13 @@ export class CreateItem extends React.Component {
                   required
                   onChange={this.handleImageUpload}
                 />
+                {this.state.tempUrl && (
+                  <img
+                    src={this.state.tempUrl}
+                    width={200}
+                    alt="Upload Preview"
+                  />
+                )}
               </label>
 
               <label htmlFor="title">
