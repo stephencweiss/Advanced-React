@@ -27,16 +27,13 @@ export const CREATE_ITEM_MUTATION = gql`
 `;
 
 export class CreateItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: "",
-      description: "",
-      image: "",
-      largeImage: "",
-      price: 1050,
-    };
-  }
+  state = {
+    title: "",
+    description: "",
+    image: "",
+    largeImage: "",
+    price: 1050,
+  };
 
   handleChange = (event) => {
     const { name, type, value } = event.target;
