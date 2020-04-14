@@ -44,9 +44,29 @@ export class CreateItem extends React.Component {
     this.setState({ [name]: val });
   };
 
+  saveImageToCloudinary = async () => {
+    const data = new FormData();
+    data.set("file", this.state.files[0]);
+    data.set("upload_preset", "sickfits");
+    await fetch("https://api.cloudinary.com/v1_1/scweiss1/auto/upload", {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          image: data.secure_url,
+          largeImage: data.eager[0].secure_url,
+        });
+      });
+  };
+
   handleSubmit = async (event, createItem) => {
     // prevent native form submission
     event.preventDefault();
+    // process uploaded image
+    await this.saveImageToCloudinary();
+
     // create the item on the data base
     const res = await createItem();
     // redirect to the new item's page
@@ -56,25 +76,11 @@ export class CreateItem extends React.Component {
     });
   };
 
-  handleImageUpload = event => {
+  handleImageUpload = (event) => {
     const { files } = event.target;
-    const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset", "sickfits");
-    console.log("uploading file...");
-    fetch("https://api.cloudinary.com/v1_1/scweiss1/auto/upload", {
-      method: "POST",
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((data) =>{
-        console.log({data})
-        this.setState({
-          image: data.secure_url,
-          largeImage: data.eager[0].secure_url,
-        })}
-      );
+    this.setState({ files });
   };
+
   render() {
     return (
       <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
