@@ -30,10 +30,10 @@ export class CreateItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "testing a new item",
-      description: "this is the new item's description",
-      image: "something.jpg",
-      largeImage: "somethinglarger.jpg",
+      title: "",
+      description: "",
+      image: "",
+      largeImage: "",
       price: 1050,
     };
   }
