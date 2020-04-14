@@ -41,6 +41,7 @@ export class CreateItem extends React.Component {
     this.setState({ [name]: val });
   };
 
+  // todo: make into a hook
   saveImageToCloudinary = async () => {
     const data = new FormData();
     data.set("file", this.state.files[0]);
