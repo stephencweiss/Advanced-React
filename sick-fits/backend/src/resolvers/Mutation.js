@@ -19,6 +19,21 @@ const Mutations = {
       },
       info
     );
+  },
+  async deleteItem(parent, args, ctx, info) {
+    // TODO: Auth check
+    const where = { id: args.id };
+    // find item
+    const item = await ctx.db.query.item(
+      { where },
+      `{
+        id
+        title
+      }`
+    ); // note: here the second argument is a "raw" graphql query in lieu of using info - which is the query from the front end
+    // check if they have permissions
+    // delete if permitted
+    return ctx.db.mutation.deleteItem({where}, info);
   }
 };
 
