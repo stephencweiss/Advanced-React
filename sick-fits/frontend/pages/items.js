@@ -1,9 +1,8 @@
-import Link from "next/link";
 import {Items} from '../components'
-function Home() {
+function Home(props) {
   return (
     <div>
-      <Items />
+      <Items page={props.query.page} />
     </div>
   );
 }
