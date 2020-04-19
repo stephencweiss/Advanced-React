@@ -33,6 +33,7 @@ export class CreateItem extends React.Component {
     image: "",
     largeImage: "",
     price: 1050,
+    loading: false,
   };
 
   handleChange = (event) => {
@@ -43,6 +44,7 @@ export class CreateItem extends React.Component {
 
   // todo: make into a hook
   saveImageToCloudinary = async () => {
+    this.setState({ loading: true });
     const data = new FormData();
     data.set("file", this.state.files[0]);
     data.set("upload_preset", "sickfits");
@@ -56,7 +58,8 @@ export class CreateItem extends React.Component {
           image: data.secure_url,
           largeImage: data.eager[0].secure_url,
         });
-      });
+      })
+      .finally(() => this.setState({ loading: false }));
   };
 
   handleSubmit = async (event, createItem) => {
@@ -86,7 +89,10 @@ export class CreateItem extends React.Component {
         {(createItem, { loading, error }) => (
           <Form onSubmit={() => this.handleSubmit(event, createItem)}>
             <ErrorMessage error={error} />
-            <fieldset disabled={loading} aria-busy={loading}>
+            <fieldset
+              disabled={this.state.loading || loading}
+              aria-busy={this.state.loading || loading}
+            >
               <label htmlFor="file">
                 Image
                 <input
