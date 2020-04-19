@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import styled from "styled-components";
 import Item from './Item'
+import { Pagination } from "./Pagination";
 
 export const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY {
@@ -30,8 +31,10 @@ const ItemsList = styled.div`
 
 // TODO: Update react-apollo to use useQuery instead
 export const Items = (props) => {
+  console.log({props})
   return (
     <Center>
+      <Pagination page={props.page}/>
       <Query query={ALL_ITEMS_QUERY}>
         {({ data, error, loading }) => {
           if (loading) return <p>Loading...</p>;
@@ -43,6 +46,7 @@ export const Items = (props) => {
           );
         }}
       </Query>
+        <Pagination page={props.page}/>
     </Center>
   );
 };
