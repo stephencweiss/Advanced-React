@@ -17,12 +17,3 @@ type Query {
   item(where: ItemWhereUniqueInput!): Item
   itemsConnection(where: ItemWhereInput): ItemConnection!
 }
-
-"""Derivative of the prisma.graphql ItemCreateInput"""
-input ItemCreateInput {
-  title: String!
-  description: String!
-  image: String
-  largeImage: String
-  price: Int!
-}
