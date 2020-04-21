@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/stephen-weiss/sw-be-sick-fits/dev
-# timestamp: Mon Apr 20 2020 12:11:21 GMT-0500 (Central Daylight Time)
+# timestamp: Tue Apr 21 2020 14:25:49 GMT-0500 (Central Daylight Time)
 
 type AggregateItem {
   count: Int!
@@ -500,10 +500,9 @@ type Subscription {
 
 type User implements Node {
   id: ID!
-  name: String!
+  name: String
   email: String!
   password: String!
-  salt: String!
   resetToken: String
   resetTokenExpiry: Float
   permissions: [Permission!]!
@@ -521,10 +520,9 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
-  name: String!
+  name: String
   email: String!
   password: String!
-  salt: String!
   resetToken: String
   resetTokenExpiry: Float
   permissions: UserCreatepermissionsInput
@@ -552,8 +550,6 @@ enum UserOrderByInput {
   email_DESC
   password_ASC
   password_DESC
-  salt_ASC
-  salt_DESC
   resetToken_ASC
   resetToken_DESC
   resetTokenExpiry_ASC
@@ -562,10 +558,9 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
-  name: String!
+  name: String
   email: String!
   password: String!
-  salt: String!
   resetToken: String
   resetTokenExpiry: Float
   permissions: [Permission!]!
@@ -614,7 +609,6 @@ input UserUpdateInput {
   name: String
   email: String
   password: String
-  salt: String
   resetToken: String
   resetTokenExpiry: Float
   permissions: UserUpdatepermissionsInput
@@ -624,7 +618,6 @@ input UserUpdateManyMutationInput {
   name: String
   email: String
   password: String
-  salt: String
   resetToken: String
   resetTokenExpiry: Float
   permissions: UserUpdatepermissionsInput
@@ -803,46 +796,6 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
-  salt: String
-
-  """All values that are not equal to given value."""
-  salt_not: String
-
-  """All values that are contained in given list."""
-  salt_in: [String!]
-
-  """All values that are not contained in given list."""
-  salt_not_in: [String!]
-
-  """All values less than the given value."""
-  salt_lt: String
-
-  """All values less than or equal the given value."""
-  salt_lte: String
-
-  """All values greater than the given value."""
-  salt_gt: String
-
-  """All values greater than or equal the given value."""
-  salt_gte: String
-
-  """All values containing the given string."""
-  salt_contains: String
-
-  """All values not containing the given string."""
-  salt_not_contains: String
-
-  """All values starting with the given string."""
-  salt_starts_with: String
-
-  """All values not starting with the given string."""
-  salt_not_starts_with: String
-
-  """All values ending with the given string."""
-  salt_ends_with: String
-
-  """All values not ending with the given string."""
-  salt_not_ends_with: String
   resetToken: String
 
   """All values that are not equal to given value."""
