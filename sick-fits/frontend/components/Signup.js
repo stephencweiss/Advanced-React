@@ -18,7 +18,7 @@ const SIGNUP_MUTATION = gql`
   }
 `;
 
-export class Signup extends React.Component {
+export class SignUp extends React.Component {
   state = {};
 
   handleChange = (event) => {

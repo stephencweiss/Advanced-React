@@ -1,4 +1,4 @@
-import { Signup } from "../components";
+import { SignUp } from "../components";
 import styled from "styled-components";
 
 const Columns = styled.div`
@@ -8,9 +8,9 @@ const Columns = styled.div`
 `;
 const SignupPage = (props) => (
   <Columns>
-    <Signup {...props} />
-    <Signup {...props} />
-    <Signup {...props} />
+    <SignUp {...props} />
+    <SignUp {...props} />
+    <SignUp {...props} />
   </Columns>
 );
 export default SignupPage;
