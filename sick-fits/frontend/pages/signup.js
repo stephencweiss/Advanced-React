@@ -1,4 +1,4 @@
-import { SignUp } from "../components";
+import { SignIn, SignUp } from "../components";
 import styled from "styled-components";
 
 const Columns = styled.div`
@@ -6,11 +6,11 @@ const Columns = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
 `;
+
 const SignupPage = (props) => (
   <Columns>
     <SignUp {...props} />
-    <SignUp {...props} />
-    <SignUp {...props} />
+    <SignIn {...props} />
   </Columns>
 );
 export default SignupPage;
