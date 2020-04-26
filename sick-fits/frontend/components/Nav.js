@@ -1,9 +1,15 @@
 import Link from "next/link";
-import NavStyles from './styles/NavStyles'
-
+import NavStyles from "./styles/NavStyles";
+import User from "./User";
 export function Nav() {
   return (
     <NavStyles>
+      <User>
+        {({ data: {identity} }) => {
+          console.log(identity);
+          return <p>{identity.name}</p>;
+        }}
+      </User>
       <Link href="/items">
         <a>Shop</a>
       </Link>
