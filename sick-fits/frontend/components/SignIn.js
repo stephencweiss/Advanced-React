@@ -3,12 +3,10 @@ import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import Form from "./styles/Form";
 import ErrorMessage from "./ErrorMessage";
+import { CURRENT_USER_QUERY } from ".";
 
 const SIGNIN_MUTATION = gql`
-  mutation SIGNIN_MUTATION(
-    $email: String!
-    $password: String!
-  ) {
+  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
     signin(email: $email, password: $password) {
       id
       email
@@ -34,7 +32,11 @@ export class SignIn extends React.Component {
   };
   render() {
     return (
-      <Mutation mutation={SIGNIN_MUTATION} variables={this.state}>
+      <Mutation
+        mutation={SIGNIN_MUTATION}
+        variables={this.state}
+        refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+      >
         {(signup, { error, loading }) => (
           <Form
             method="POST" // protects against url encoding

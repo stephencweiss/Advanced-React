@@ -3,6 +3,7 @@ import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import Form from "./styles/Form";
 import ErrorMessage from "./ErrorMessage";
+import {CURRENT_USER_QUERY} from '.'
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
@@ -35,7 +36,11 @@ export class SignUp extends React.Component {
   };
   render() {
     return (
-      <Mutation mutation={SIGNUP_MUTATION} variables={this.state}>
+      <Mutation
+        mutation={SIGNUP_MUTATION}
+        variables={this.state}
+        refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+      >
         {(signup, { error, loading }) => (
           <Form
             method="POST" // protects against url encoding
