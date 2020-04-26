@@ -65,7 +65,7 @@ export class SignIn extends React.Component {
                   onChange={this.handleChange}
                 />
               </label>
-              <button type="submit">Submit</button>
+              <button type="submit">Sign In!</button>
             </fieldset>
           </Form>
         )}
