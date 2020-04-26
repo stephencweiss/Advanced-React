@@ -7,7 +7,7 @@ export function Nav() {
       <User>
         {({ data: {identity} }) => {
           console.log(identity);
-          return <p>{identity.name}</p>;
+          return <p>{identity && identity.name}</p>;
         }}
       </User>
       <Link href="/items">
