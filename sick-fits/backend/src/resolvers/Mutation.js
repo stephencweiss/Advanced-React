@@ -1,3 +1,8 @@
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const ONE_YEAR = 1000 * 60 * 60 * 24 * 365;
+
 const Mutations = {
   createItem(parent, args, ctx, info) {
     // TODO: Auth check
@@ -33,7 +38,29 @@ const Mutations = {
     ); // note: here the second argument is a "raw" graphql query in lieu of using info - which is the query from the front end
     // check if they have permissions
     // delete if permitted
-    return ctx.db.mutation.deleteItem({where}, info);
+    return ctx.db.mutation.deleteItem({ where }, info);
+  },
+
+  async signup(parent, args, ctx, info) {
+    args.email = args.email.toLowerCase(); // avoid class of errors due to inconsistent casing
+    const password = await bcrypt.hash(args.password, 10);
+    const user = await ctx.db.mutation.createUser(
+      {
+        data: {
+          ...args,
+          password,
+          permissions: { set: ["USER"] } //uses a setter because permissions is an enum
+        }
+      },
+      info
+    );
+    const token = jwt.sign({ userID: user.id }, process.env.APP_SECRET);
+
+    ctx.response.cookie("token", token, {
+      httpOnly: true,
+      maxAge: ONE_YEAR
+    });
+    return user;
   }
 };
 
