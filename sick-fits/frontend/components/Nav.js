@@ -1,6 +1,8 @@
 import Link from "next/link";
 import NavStyles from "./styles/NavStyles";
 import User from "./User";
+import { SignOut } from "./SignOut";
+
 export function Nav() {
   return (
     <User>
@@ -20,6 +22,7 @@ export function Nav() {
               <Link href="/me">
                 <a>Account</a>
               </Link>
+              <SignOut/>
             </>
           )}
           {!identity && (
