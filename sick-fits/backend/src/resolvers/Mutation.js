@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const ONE_YEAR = 1000 * 60 * 60 * 24 * 365;
+const EXPIRED = new Date("1900-01-01");
 
 const Mutations = {
   createItem(parent, args, ctx, info) {
@@ -86,6 +87,22 @@ const Mutations = {
     });
     // 4. return the user
     return user;
+  },
+
+  /**
+   * The signout function "deletes" the cookie - the spec compliant way to do this is to set the expiration in the past.
+   * src: https://stackoverflow.com/questions/20320549/how-can-you-delete-a-cookie-in-an-http-response/20320610#20320610
+   * @param {*} parent
+   * @param {*} args
+   * @param {*} ctx
+   * @param {*} info
+   */
+  signout(parent, args, ctx, info) {
+    ctx.response.cookie("token", "", {
+      httpOnly: true,
+      expire: EXPIRED
+    });
+    return true;
   }
 };
 
