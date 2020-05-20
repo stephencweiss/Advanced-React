@@ -71,22 +71,19 @@ const Mutations = {
       `{id email name password}`
     );
     // 1.error - if not, throw an error
-    if(!user){
-      throw new Error(`No user found with email,${email}`)
-    }
+    if (!user) throw new Error(`No user found with email, ${email}`);
+
     // 2. check if the password provided is correct
-    const validPassword = await bcrypt.compare(password, user.password)
+    const validPassword = await bcrypt.compare(password, user.password);
     // 2.error - if not, throw an error
-    if (!validPassword) {
-      throw new Error(`Incorrect password`)
-    }
+    if (!validPassword) throw new Error(`Incorrect password`);
 
     // 3. generate a jwt and palce into the cookie of response
-    const token = jwt.sign({userId: user.id}, process.env.APP_SECRET)
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     ctx.response.cookie("token", token, {
       httpOnly: true,
       maxAge: ONE_YEAR
-    })
+    });
     // 4. return the user
     return user;
   }
